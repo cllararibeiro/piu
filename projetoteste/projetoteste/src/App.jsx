@@ -1,16 +1,19 @@
-import Redux from './Redux'
+import Props from './components/Props'
+import Card from './components/Card'
+import Children from './components/Children'
 import './App.css'
-import Escopo from './Escopo'
-import Instagram from './Instagram'
 
 function App() {
-  
+
 
   return (
     <>
-      <Escopo/>
-      <Redux/>
-      <Instagram/>
+      <Props nome={"React PIU"}/>
+      <Card />
+      <br />
+      <Children>
+        <Card/>
+      </Children>
     </>
   )
 }
