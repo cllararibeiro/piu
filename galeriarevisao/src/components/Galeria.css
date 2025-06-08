@@ -1,0 +1,26 @@
+.galeria {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* ou space-between / space-around */
+  gap: 20px; /* espaço entre os cards */
+  flex-wrap: nowrap; /* impede que quebre para outra linha */
+  overflow-x: auto; /* rolagem horizontal se não couber */
+  padding: 20px;
+}
+
+.detalhes{
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.detalhes img{
+    width: 50%;
+}
+
+.detalhes h3{
+    font-size: 36px;
+}
+
+.detalhes p{
+    font-size: 18px;
+}
