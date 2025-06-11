@@ -1,0 +1,29 @@
+body.claro {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.escuro {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.claro button#tema {
+  background-color: #1b1a1a;
+  color: #e2dada;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+body.escuro button#tema {
+  background-color: #faf4f4;
+  color: #080808;
+  padding: 20px;
+  border: 1px solid #fff;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  font-family: sans-serif;
+}
