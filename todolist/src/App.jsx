@@ -1,21 +1,26 @@
-import { useState } from 'react'
-import './App.css'
-import VisuTarefa from './components/VisuTarefa'
-import Tarefas from './components/Tarefas'
-import Tema from './components/Tema'
+import './App.css';
+import Children from './components/Children';
+import Tarefas from './components/Tarefas';
+import Change from './components/Change';
+import NewTask from './components/NewTask';
+import { useState } from 'react';
 
 function App() {
+  const [listaDeTarefas, setListaDeTarefas] = useState([]);
 
   return (
     <>
-      <Tema/>
-      {Tarefas.map((tarefa) => (
-         <VisuTarefa titulo = {tarefa.titulo}/>
-      ))}
+      <Change />
+      <NewTask 
+        listaDeTarefas={listaDeTarefas} 
+        setListaDeTarefas={setListaDeTarefas} 
+      />
+
+      <Children>
+        <Tarefas listaDeTarefas={listaDeTarefas}  setListaDeTarefas={setListaDeTarefas}/>
+      </Children>
     </>
-  )
+  );
 }
 
-export default App
-
- 
+export default App;
