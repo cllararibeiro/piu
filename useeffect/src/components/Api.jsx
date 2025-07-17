@@ -1,38 +1,97 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import './Api.css';
 
 export default function Api() {
   const [usuarios, setUsuarios] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    // Usamos uma função assíncrona dentro do useEffect
-    const fetchUsuarios = async () => {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users'); //fecth faz uma requisição HTTP utilizando o método GET
-        const data = await response.json(); //await faz com que a requisição aguarde os dados chegarem. O método json converte os dados para json
-        setUsuarios(data); // Atualiza o estado com os dados recebidos
-      } catch (error) {
-        console.error("Erro ao buscar usuários:", error);
-      } finally {
-        setLoading(false); // Finaliza o carregamento
-      }
+  const [mostrarNomes, setMostrarNomes] = useState(false);
+  const [mostrarUsernames, setMostrarUsernames] = useState(false);
+  const [mostrarCidades, setMostrarCidades] = useState(false);
+
+  const fetchUsuarios = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
+      const data = await response.json();
+      setUsuarios(data);
+    } catch (error) {
+      console.error("Erro ao buscar usuários:", error);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    fetchUsuarios();
-  }, []); // O array vazio garante que o efeito execute apenas uma vez
+  const handleMostrarNomes = async () => {
+    await fetchUsuarios();
+    setMostrarNomes(true);
+  };
 
-  if (loading) {
-    return <p>Carregando...</p>;
-  }
+  const handleMostrarUsernames = async () => {
+    await fetchUsuarios();
+    setMostrarUsernames(true);
+  };
+
+  const handleMostrarCidades = async () => {
+    await fetchUsuarios();
+    setMostrarCidades(true);
+  };
 
   return (
     <div>
-      <h1>Lista de Usuários</h1>
-      <ul>
-        {usuarios.map(usuario => (
-          <li key={usuario.id}>{usuario.name}</li>
-        ))}
-      </ul>
+      <h1>Usuários da API</h1>
+
+      {loading && <p>Carregando...</p>}
+
+      <div className="tabelas-container">
+        {/* Tabela de Nomes */}
+        <div className="tabela">
+          <h2>Nomes</h2>
+          <button onClick={handleMostrarNomes}>Mostrar Nomes</button>
+          {mostrarNomes && (
+            <table>
+              <thead><tr><th>Nome</th></tr></thead>
+              <tbody>
+                {usuarios.map(usuario => (
+                  <tr key={usuario.id}><td>{usuario.name}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        {/* Tabela de Usernames */}
+        <div className="tabela">
+          <h2>Usernames</h2>
+          <button onClick={handleMostrarUsernames}>Mostrar Usernames</button>
+          {mostrarUsernames && (
+            <table>
+              <thead><tr><th>Username</th></tr></thead>
+              <tbody>
+                {usuarios.map(usuario => (
+                  <tr key={usuario.id}><td>{usuario.username}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+
+        {/* Tabela de Cidades */}
+        <div className="tabela">
+          <h2>Cidades</h2>
+          <button onClick={handleMostrarCidades}>Mostrar Cidades</button>
+          {mostrarCidades && (
+            <table>
+              <thead><tr><th>Cidade</th></tr></thead>
+              <tbody>
+                {usuarios.map(usuario => (
+                  <tr key={usuario.id}><td>{usuario.address.city}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
