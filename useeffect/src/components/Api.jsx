@@ -44,7 +44,6 @@ export default function Api() {
       {loading && <p>Carregando...</p>}
 
       <div className="tabelas-container">
-        {/* Tabela de Nomes */}
         <div className="tabela">
           <h2>Nomes</h2>
           <button onClick={handleMostrarNomes}>Mostrar Nomes</button>
@@ -60,7 +59,6 @@ export default function Api() {
           )}
         </div>
 
-        {/* Tabela de Usernames */}
         <div className="tabela">
           <h2>Usernames</h2>
           <button onClick={handleMostrarUsernames}>Mostrar Usernames</button>
@@ -76,7 +74,6 @@ export default function Api() {
           )}
         </div>
 
-        {/* Tabela de Cidades */}
         <div className="tabela">
           <h2>Cidades</h2>
           <button onClick={handleMostrarCidades}>Mostrar Cidades</button>
