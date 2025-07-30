@@ -6,6 +6,7 @@ import Tema from './components/Tema'
 import InputCor from './components/InputCor'
 import Login from './components/Login'
 import Listar from './components/Listar'
+import Tarefas from './components/Tarefas'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Login/>
       <InputCor/>
       <Listar/>
+      <Tarefas/>
     </>
   )
 }
